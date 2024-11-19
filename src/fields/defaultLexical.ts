@@ -6,7 +6,9 @@ import {
   ParagraphFeature,
   lexicalEditor,
   UnderlineFeature,
+  BlocksFeature,
 } from '@payloadcms/richtext-lexical'
+import { CustomInlineBlock } from '@/blocks/CustomInlineBlock'
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -15,6 +17,10 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       UnderlineFeature(),
       BoldFeature(),
       ItalicFeature(),
+      BlocksFeature({
+        blocks: [],
+        inlineBlocks: [CustomInlineBlock],
+      }),
       LinkFeature({
         enabledCollections: ['pages', 'posts'],
         fields: ({ defaultFields }) => {
