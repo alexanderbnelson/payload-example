@@ -107,6 +107,13 @@ export const Posts: CollectionConfig = {
               hasMany: true,
               relationTo: 'posts',
             },
+            // THIS DOESNT WORK BECAUSE POSTS HAVE VERSIONS.
+            {
+              name: 'relatedPagesJoin',
+              type: 'join',
+              collection: 'pages',
+              on: 'relatedPosts',
+            },
             {
               name: 'categories',
               type: 'relationship',

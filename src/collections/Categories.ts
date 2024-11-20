@@ -20,5 +20,23 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'relatedCategories',
+      type: 'relationship',
+      relationTo: 'categories',
+      hasMany: true,
+    },
+    {
+      name: 'relatedCategoriesJoin',
+      type: 'join',
+      collection: 'categories',
+      on: 'relatedCategories',
+    },
+    {
+      name: 'categories',
+      type: 'join',
+      collection: 'posts',
+      on: 'categories',
+    },
   ],
 }
