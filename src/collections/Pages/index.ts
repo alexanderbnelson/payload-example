@@ -59,11 +59,11 @@ export const Pages: CollectionConfig = {
     {
       name: 'relatedPosts',
       type: 'relationship',
+      relationTo: 'posts',
+      hasMany: true,
       admin: {
         position: 'sidebar',
       },
-      hasMany: true,
-      relationTo: 'posts',
     },
     {
       type: 'tabs',

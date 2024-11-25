@@ -32,7 +32,7 @@ docker run --name $DB_CONTAINER_NAME \
   -e POSTGRES_PASSWORD=$DB_PASSWORD \
   -e POSTGRES_HOST_AUTH_METHOD=trust \
   -e POSTGRES_DB=payload_example \
-  -d -p 5433:5433 \
+  -d -p 5432:5432 \
   postgres:latest
 
 echo "Database container was successfully created"

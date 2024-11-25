@@ -25,7 +25,11 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
+    posts: {
+      relatedPagesJoin: 'pages';
+    };
     categories: {
+      relatedCategoriesJoin: 'categories';
       categories: 'posts';
     };
   };
@@ -160,6 +164,10 @@ export interface Post {
     [k: string]: unknown;
   };
   relatedPosts?: (number | Post)[] | null;
+  relatedPagesJoin?: {
+    docs?: (number | Page)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
@@ -187,6 +195,11 @@ export interface Post {
 export interface Category {
   id: number;
   title: string;
+  relatedCategories?: (number | Category)[] | null;
+  relatedCategoriesJoin?: {
+    docs?: (number | Category)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   categories?: {
     docs?: (number | Post)[] | null;
     hasNextPage?: boolean | null;
@@ -907,6 +920,7 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   relatedPosts?: T;
+  relatedPagesJoin?: T;
   categories?: T;
   meta?:
     | T
@@ -1020,6 +1034,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  relatedCategories?: T;
+  relatedCategoriesJoin?: T;
   categories?: T;
   parent?: T;
   breadcrumbs?:
